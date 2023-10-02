@@ -16,7 +16,7 @@ class BaseModel:
     def save(self):
         """Saves current time"""
         self.updated_at = datetime.now()
-        models.storage.save()
+        # models.storage.save()
 
     def to_dict(self):
         # Create a shallow copy so that the original dict isn't modified
