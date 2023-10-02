@@ -2,7 +2,6 @@ import uuid
 from datetime import datetime
 import models
 
-
 class BaseModel:
     def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
@@ -11,6 +10,7 @@ class BaseModel:
                 if k != "__class__":
                     setattr(self, k, v)
         else:
+            models.storage.new(self)
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
 
@@ -20,7 +20,7 @@ class BaseModel:
     def save(self):
         """Saves current time"""
         self.updated_at = datetime.now()
-        # models.storage.save()
+        models.storage.save()
 
     def to_dict(self):
         # Create a shallow copy so that the original dict isn't modified
