@@ -23,7 +23,7 @@ class FileStorage():
         try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as objFile:
                 temp = json.load(objFile)
-                for k, v in temp.itemps():
+                for k, v in temp.items():
                     restoredObject = eval(v['__class__'])(**v)
                     FileStorage.__objects[k] = restoredObject
         except FileNotFoundError:
